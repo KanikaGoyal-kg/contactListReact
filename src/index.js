@@ -3,12 +3,13 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import ContactList from './pages/ContactList';
 
 // import Modal from 'antd/lib/modal/Modal';
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <ContactList />
   </React.StrictMode>,
   document.getElementById('root')
  
