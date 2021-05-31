@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import {Button, Modal} from 'antd';
+import {Button, Input} from 'antd';
 
 const ContactList = () => {
 
@@ -9,6 +9,10 @@ const ContactList = () => {
         alert('ijel');
         setIsModalVisible(true);
     }
+
+    const submitForm = () => {
+        setIsModalVisible(false);
+    }
     
     return (
         <div style={{width: '100%'}}>
@@ -17,10 +21,11 @@ const ContactList = () => {
         </div>
 
         {isModalVisible ?
-        <div>
+        <form className="div">
             <div>
-                <h4>Contact Details</h4>
+                <h4>Enter Details</h4>
             </div>
+            <div className="input-main-div">
             <div>
                 <input type="text" placeholder="Enter you first name" />
             </div>
@@ -28,11 +33,16 @@ const ContactList = () => {
                 <input type="text" placeholder="Enter you last name" />
             </div>
             <div>
-                <input type="text" placeholder="Enter you country code" />
-                <input type="text" placeholder="Enter you mobile number" />
+                {/* <Input addonBefore="+" defaultValue="Enter you mobile number" /> */}
+                 <input type="text" placeholder="Enter you country code" />
+                <input type="text" placeholder="Enter you mobile number" /> 
 
             </div>
-        </div>
+            </div>
+            <div>
+                <button onClick={submitForm} type="primary">Submit</button>
+            </div>
+        </form>
         : null }
         
         {/* <div style={{width: '100% !important'}}>
