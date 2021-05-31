@@ -12,7 +12,6 @@ const ContactList = () => {
         id: 0
     });
     const[enterDetails, setEnterDetails] = useState([]);
-    // const [editModal, setEditModal] = useState({});
     const [isSaveButton, setIsSaveButton] = useState(false);
 
     const addContacts = () => {
@@ -29,18 +28,12 @@ const ContactList = () => {
     }
 
     const toRemoveDetails = (deleteDetails) => {
-        // let removetodo = enterDetails.filter((enterDetails, index) => index === deleteDetails);
-        const removetodo = enterDetails.findIndex(itemVal => itemVal.id === contactDetails.id )
-        const removeParticularDetail= enterDetails.splice(removetodo, 1)
-        setEnterDetails(removeParticularDetail)
-        console.log(removeParticularDetail);
-        // setContactDetails({ 
-        //     fname: "",
-        //     lname: "",
-        //     countrycode: "",
-        //     mobilenumber: "",
-        //     id: 0
-        //  });
+        // const removetodo = enterDetails.findIndex(itemVal => itemVal.id === contactDetails.id )
+        // const removeParticularDetail= enterDetails.splice(removetodo, 1)
+        const removetodo = enterDetails.filter(itemVal => itemVal.id === deleteDetails.id)
+        setEnterDetails(removetodo)
+        // console.log(removeParticularDetail);
+      
     }
 
     const toEditDetails = (itemVal) => {
@@ -64,12 +57,6 @@ const ContactList = () => {
         } else {
 
            const editedDetails = enterDetails.findIndex(itemVal => itemVal.id === contactDetails.id )
-        //    const modifiedEnterDetails = enterDetails.filter(itemVal => itemVal.id === contactDetails.id ).map((item) => { 
-               
-        //         return contactDetails;
-        //        }
-        //    )
-        //    console.log(modifiedEnterDetails)
                let previousEnterDetails = [...enterDetails] 
                 previousEnterDetails[editedDetails].fname = contactDetails.fname
                 previousEnterDetails[editedDetails].lname =contactDetails.lname
@@ -79,13 +66,7 @@ const ContactList = () => {
                console.log(previousEnterDetails)
            setEnterDetails(previousEnterDetails)
            alert('Form edited')
-        // setContactDetails({ 
-        //     fname: "",
-        //     lname: "",
-        //     countrycode: "",
-        //     mobilenumber: "",
-        //     id: ""
-        //  });
+      
         }
     }
 
@@ -111,7 +92,7 @@ const ContactList = () => {
             id: 0
          });
         }
-        
+
     }
     
     return (
@@ -130,7 +111,7 @@ const ContactList = () => {
                 {itemVal.mobilenumber}
             </div>
             <div onClick={() => toEditDetails(itemVal)}>Edit</div>
-            <div onClick={toRemoveDetails} id="deleteDetails">Remove</div>
+            <div onClick={() => toRemoveDetails(itemVal)} id="deleteDetails">Remove</div>
             </div>
             )
         })}
