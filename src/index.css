@@ -83,3 +83,12 @@ th {
 thead {
   margin-left: 50px;
 }
+.content {
+  padding-right: 25%;
+  padding-top: 25px;
+}
+.content-div {
+  display: flex;
+  margin-left:50px;
+  width: 100%;
+}
