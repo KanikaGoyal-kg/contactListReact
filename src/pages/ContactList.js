@@ -16,7 +16,7 @@ const ContactList = () => {
   const displayData = JSON.parse(localStorage.getItem("savingDetails"));
 
   useEffect(() => {
-      if ('savingDetails' && 'savingDetails'.length) {
+      if (displayData && displayData.length) {
     setEnterDetails(displayData);
 }
   }, []);
