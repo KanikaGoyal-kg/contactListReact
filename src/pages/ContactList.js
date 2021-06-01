@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import {Button} from 'antd';
+import {Button, Input} from 'antd';
 
 const ContactList = () => {
 
@@ -96,18 +96,48 @@ const ContactList = () => {
     }
     
     return (
-        <div style={{width: '100%'}}>
+        <div className="table-div">
+        <div className="button-div">
+        <Button className="button-style" type="primary" onClick={addContacts}>Add Contacts</Button>
+        </div>
+        <table class="table-div">
+
+          <caption class="caption-style">
+            Contact details
+          </caption>
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Country code</th>
+              <th>Mobile number</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody id="addContactList">
+            {/* <script>
+              let contactInfo = localStorage.getItem("localtask");
+              if (contactInfo == null) {
+                contactDetails = [];
+              } else {
+                contactDetails = JSON.parse(contactInfo);
+              }
+              let i;
+              editdeleteupdate(contactDetails);
+            </script> */}
+          </tbody>
+        </table>
         <div>
+
         { enterDetails.map((itemVal, index) => { 
             return (
-            <div key={index}>
-            <div>
+            <div style={{display: 'flex'}} key={index}>
+            <div style={{paddingRight: '18%'}}>
                 {itemVal.fname} {itemVal.lname}
             </div>
-            <div>
+            <div style={{paddingRight: '18%'}}>
                 {itemVal.countrycode}
             </div>
-            <div>
+            <div style={{paddingRight: '18%'}}>
                 {itemVal.mobilenumber}
             </div>
             <div onClick={() => toEditDetails(itemVal)}>Edit</div>
@@ -115,7 +145,6 @@ const ContactList = () => {
             </div>
             )
         })}
-            <Button type="primary" onClick={addContacts}>Add Contacts</Button>
         </div>
 
         {isModalVisible ?
@@ -125,23 +154,23 @@ const ContactList = () => {
             </div>
             <div className="input-main-div">
             <div>
-                <input onChange={inputEvent} value={contactDetails.fname}  name="fname" type="text" placeholder="Enter you first name" />
+                <Input onChange={inputEvent} className="name-div" value={contactDetails.fname}  name="fname" type="text" placeholder="Enter you first name" />
             </div>
             <div>
-                <input type="text" onChange={inputEvent} value={contactDetails.lname} name="lname" placeholder="Enter you last name" />
+                <Input type="text" className="name-div" onChange={inputEvent} value={contactDetails.lname} name="lname" placeholder="Enter you last name" />
             </div>
             <div>
-                <input type="text" onChange={inputEvent} value={contactDetails.countrycode}  name="countrycode" placeholder="Enter you country code" />
-                <input type="text" onChange={inputEvent} value={contactDetails.mobilenumber} name="mobilenumber" placeholder="Enter you mobile number" /> 
+                <Input type="text" className="code-div" onChange={inputEvent} value={contactDetails.countrycode}  name="countrycode" placeholder="Enter you country code" />
+                <Input type="text" className="number-div" onChange={inputEvent} value={contactDetails.mobilenumber} name="mobilenumber" placeholder="Enter you mobile number" /> 
 
             </div>
             </div>
             <div>
             {isSaveButton ?
-                <button type="primary" onClick={saveForm}>Save</button>
+                <button type="primary" className="button" onClick={saveForm}>Save</button>
 
                 :
-                <button type="primary" onClick={submitForm}>Submit</button>
+                <button type="primary" className="button" onClick={submitForm}>Submit</button>
 
             }
 
