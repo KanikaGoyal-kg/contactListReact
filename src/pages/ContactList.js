@@ -16,13 +16,18 @@ const ContactList = () => {
   const displayData = JSON.parse(localStorage.getItem("savingDetails"));
 
   useEffect(() => {
+      if ('savingDetails' && 'savingDetails'.length) {
     setEnterDetails(displayData);
+}
   }, []);
 
   const addContacts = () => {
     setIsModalVisible(true);
   };
-
+  
+  const cancelForm = () => {
+    setIsModalVisible(false)
+  }
   const inputEvent = (event) => {
     const { value, name } = event.target;
     setContactDetails({
@@ -65,8 +70,6 @@ const ContactList = () => {
         contactDetails.countrycode;
       previousEnterDetails[editedDetails].mobilenumber =
         contactDetails.mobilenumber;
-
-      console.log(previousEnterDetails);
       setEnterDetails(previousEnterDetails);
       alert("Form edited");
       setIsModalVisible(false);
@@ -122,7 +125,7 @@ const ContactList = () => {
         </thead>
         <tbody></tbody>
       </table>
-      <div>
+      <div style={{backgroundColor: 'white'}}>
         {enterDetails.map((itemVal, index) => {
           return (
             <div className="content-div" key={index}>
@@ -132,8 +135,8 @@ const ContactList = () => {
               <div className="content" >{itemVal.countrycode}</div>
               <div className="content" >{itemVal.mobilenumber}</div>
              <div className="content" >
-              <div  onClick={() => toEditDetails(itemVal)}>Edit</div>
-              <div onClick={() => toRemoveDetails(itemVal)} id="deleteDetails">
+              <div  style={{marginRight: '10px', cursor: 'pointer'}} onClick={() => toEditDetails(itemVal)}>Edit</div>
+              <div style={{marginRight: '10px', cursor: 'pointer'}} onClick={() => toRemoveDetails(itemVal)} id="deleteDetails">
                 Remove
               </div>
               </div>
@@ -144,6 +147,7 @@ const ContactList = () => {
 
       {isModalVisible ? (
         <form className="div">
+      
           <div>
             <h4>Enter Details</h4>
           </div>
@@ -170,15 +174,15 @@ const ContactList = () => {
             </div>
             <div>
               <Input
-                type="text"
+                type="number"
                 className="code-div"
                 onChange={inputEvent}
                 value={contactDetails.countrycode}
                 name="countrycode"
-                placeholder="Enter you country code"
+                placeholder="+91"
               />
               <Input
-                type="text"
+                type="number"
                 className="number-div"
                 onChange={inputEvent}
                 value={contactDetails.mobilenumber}
@@ -193,9 +197,14 @@ const ContactList = () => {
                 Save
               </button>
             ) : (
-              <button type="primary" className="button" onClick={submitForm}>
+                <>
+              <button  type="primary" className="button" onClick={submitForm}>
                 Submit
               </button>
+              <button type="primary" className="button" style={{marginRight: '10px', cursor: 'pointer'}} onClick={cancelForm}>
+                Cancel
+              </button>
+              </>
             )}
           </div>
         </form>
